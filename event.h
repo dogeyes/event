@@ -1,5 +1,6 @@
 #ifndef _EVENT
 #define _EVENT
+#include <stdlib.h>
 #include "part.h"
 struct event {
   double deadline;
@@ -7,7 +8,7 @@ struct event {
 };
 
 int event_compare(event* event1, event* event2) {
-  double a = event1->deadline > event2->deadline;
+  double a = event1->deadline - event2->deadline;
   if (a > 0) {
     return 1;
   }
