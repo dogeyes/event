@@ -2,7 +2,9 @@
 #define _EVENT
 #include <stdlib.h>
 #include "part.h"
+// event represents a part finish one state.
 struct event {
+  // deadline is the event finish time.
   double deadline;
   part *p;
 };
