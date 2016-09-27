@@ -11,7 +11,7 @@ pq* create_pq(int capacity, int(*compare)(ITEM_TYPE, ITEM_TYPE)) {
   a_pq.num = 0;
   a_pq.items = (ITEM_TYPE*)malloc(sizeof(ITEM_TYPE) * capacity);
   a_pq.compare = compare;
-  return a_pq
+  return a_pq;
 }
 
 pq* add_item(pq* a_pq, ITEM_TYPE item) {
