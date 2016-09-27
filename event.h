@@ -7,7 +7,14 @@ struct event {
 };
 
 int event_compare(event* event1, event* event2) {
-  return event1->deadline - event2->deadline;
+  double a = event1->deadline > event2->deadline;
+  if (a > 0) {
+    return 1;
+  }
+  if (a < 0) {
+    return -1;
+  }
+  return 0;
 }
 
 event* create_event(double deadline, part* p) {

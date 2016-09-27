@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include <stdio.h>
 #include <math.h>
 #include <time.h>
 #include "simulator.c"
@@ -6,11 +7,12 @@ const double INTERVAL_E = 10.0;
 const double DURATION_E = 20.0;
 
 double urand() {
-  return rand() / RAND_MAX;
+  return (double)rand() / RAND_MAX;
 }
 
 double randexp() {
-  return -(log(1.0 - urand()));
+  double d = -(log(1.0 - urand()));
+  return d;
 }
 
 

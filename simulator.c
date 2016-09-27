@@ -1,5 +1,6 @@
 #include <assert.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "part.h"
 #include "event.h"
 #define ITEM_TYPE event*
