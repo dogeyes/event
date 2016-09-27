@@ -48,4 +48,14 @@ NODE_VALUE_TYPE dequeue(queue* q) {
   free(n);
   return v;
 }
+
+bool is_empty_queue(queue* q) {
+  return q->num == 0;
+}
+
+// can only delete empty queue
+void delete_queue(queue* q) {
+  free(q->head);
+  free(q);
+}
 #endif

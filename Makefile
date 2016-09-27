@@ -29,7 +29,7 @@ CXXFLAGS += -g -Wall -Wextra -pthread
 
 # All tests produced by this Makefile.  Remember to add new tests you
 # created to the list.
-TESTS = pq_test queue_test
+TESTS = pq_test queue_test simulator_test
 
 # All Google Test headers.  Usually you shouldn't change this
 # definition.
@@ -83,4 +83,19 @@ queue_test.o : $(USER_DIR)/queue_test.c\
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/queue_test.c
 
 queue_test: queue_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
+simulator_test.o : $(USER_DIR)/simulator_test.c $(USER_DIR)/simulator.c\
+                     $(USER_DIR)/queue.h $(USER_DIR)/pq.h \
+										 $(USER_DIR)/part.h $(USER_DIR)/event.h $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/simulator_test.c
+
+simulator_test: simulator_test.o gtest_main.a
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@
+
+run_simulator.o : $(USER_DIR)/run_simulator.c $(USER_DIR)/simulator.c  \
+                     $(USER_DIR)/queue.h $(USER_DIR)/pq.h \
+										 $(USER_DIR)/part.h $(USER_DIR)/event.h $(GTEST_HEADERS)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $(USER_DIR)/run_simulator.c
+run_simulator: run_simulator.o
 	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -lpthread $^ -o $@

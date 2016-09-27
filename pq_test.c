@@ -55,3 +55,10 @@ TEST(pq_test, PopItem) {
     EXPECT_EQ(i, item);
   }
 }
+
+TEST(pq_test, IsEmpty) {
+  pq* a_pq = create_pq(10, compare);
+  EXPECT_TRUE(is_emtpy_pq(a_pq));
+  add_item(a_pq, 1);
+  EXPECT_FALSE(is_emtpy_pq(a_pq));
+}

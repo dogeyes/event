@@ -39,3 +39,10 @@ TEST(queue_test, Dequeue) {
   EXPECT_EQ(2, v);
   EXPECT_EQ(q->head, q->tail);
 }
+
+TEST(queue_test, IsEmpty) {
+  queue* q = create_queue();
+  EXPECT_EQ(true, is_empty_queue(q));
+  enqueue(q, 1);
+  EXPECT_EQ(false, is_empty_queue(q));
+}

@@ -60,4 +60,13 @@ ITEM_TYPE pop_item(pq* a_pq) {
   return item;
 }
 
+bool is_emtpy_pq(pq* a_pq) {
+  return a_pq->num == 0;
+}
+
+//can only delete empty pq;
+void delete_pq(pq* a_pq) {
+  free(a_pq->items);
+  free(a_pq);
+}
 #endif
