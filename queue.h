@@ -2,7 +2,7 @@
 #define _QUEUE
 #include <stdlib.h>
 
-typedef struct node_type node;
+typedef struct node_type node;      // replaced w/. part
 struct node_type{
   node* next;
   node* prev;
@@ -15,7 +15,7 @@ typedef struct queue_type {
   int num;
 } queue;
 
-queue* create_queue() {
+queue* create_queue() {                             //create_queue corresponds to delete_queue
   queue* q = (queue*)malloc(sizeof(queue));
   // head is a dummy node;
   node* head = (node*)malloc(sizeof(node));
