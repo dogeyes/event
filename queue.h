@@ -1,17 +1,19 @@
 #ifndef _QUEUE
 #define _QUEUE
 #include <stdlib.h>
-struct node {
-  struct node* next;
-  struct node* prev;
+
+typedef struct node_type node;
+struct node_type{
+  node* next;
+  node* prev;
   NODE_VALUE_TYPE value;
 };
 
-struct queue {
-  struct node* head;
-  struct node* tail;
+typedef struct queue_type {
+  node* head;
+  node* tail;
   int num;
-};
+} queue;
 
 queue* create_queue() {
   queue* q = (queue*)malloc(sizeof(queue));
@@ -49,7 +51,7 @@ NODE_VALUE_TYPE dequeue(queue* q) {
   return v;
 }
 
-bool is_empty_queue(queue* q) {
+int is_empty_queue(queue* q) {
   return q->num == 0;
 }
 

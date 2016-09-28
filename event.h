@@ -3,11 +3,11 @@
 #include <stdlib.h>
 #include "part.h"
 // event represents a part finish one state.
-struct event {
+typedef struct event_type {
   // deadline is the event finish time.
   double deadline;
   part *p;
-};
+} event;
 
 int event_compare(event* event1, event* event2) {
   double a = event1->deadline - event2->deadline;

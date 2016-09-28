@@ -10,7 +10,7 @@
 
 const int MAX_EVENT_QUEUE = 100000;
 
-struct simulator{
+typedef struct simulator_type {
   // parts queued in every state
   queue* state_queues[STATE_NUM];
   // every state's finish time
@@ -19,7 +19,7 @@ struct simulator{
   pq* event_pq;
   // current simulator time
   double time;
-};
+} simulator;
 
 double max(double a, double b) {
   return a > b? a: b;

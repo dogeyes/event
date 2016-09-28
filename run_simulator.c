@@ -31,5 +31,6 @@ int main() {
 
   // calculate all the statics
   // TODO
+  printf("hello");
   delete_simulator(a_sim);
 }

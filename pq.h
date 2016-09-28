@@ -4,12 +4,12 @@
 
 typedef int (*COMPARE_FUN)(ITEM_TYPE, ITEM_TYPE);
 
-struct pq {
+typedef struct pq_type {
   int capacity;
   int num;
   ITEM_TYPE* items;
   int (*compare)(ITEM_TYPE, ITEM_TYPE);
-};
+} pq;
 
 pq* create_pq(int capacity, COMPARE_FUN compare) {
   pq* a_pq = (pq*)malloc(sizeof(pq));
@@ -60,7 +60,7 @@ ITEM_TYPE pop_item(pq* a_pq) {
   return item;
 }
 
-bool is_emtpy_pq(pq* a_pq) {
+int is_emtpy_pq(pq* a_pq) {
   return a_pq->num == 0;
 }
 
