@@ -2,7 +2,7 @@
 #define _PQ_H
 #include <stdlib.h>
 
-typedef int (*COMPARE_FUN)(ITEM_TYPE, ITEM_TYPE);
+typedef int (*COMPARE_FUN)(ITEM_TYPE, ITEM_TYPE);   //part
 
 typedef struct pq_type {
   int capacity;
