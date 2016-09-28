@@ -6,7 +6,7 @@ typedef enum {SOURCE = 0, STATE1, STATE2, STATE3, SINK} state;
 typedef struct part_type {
   state s; // part in which state
   double process_duration;
-  double schedule_time[STATE_NUM];
-  double finish_time[STATE_NUM];
+  double schedule_time[STATE_NUM];   //arrival time
+  double finish_time[STATE_NUM];     //dismiss time
 } part;
 #endif
