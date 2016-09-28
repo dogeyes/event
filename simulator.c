@@ -87,6 +87,7 @@ state process_event(simulator* a_sim) {
     // if next state is SINK, this part finished.
     p->schedule_time[SINK] = a_sim->time;
     p->finish_time[SINK] = a_sim->time;
+    enqueue(a_sim->state_queues[p->s], p);
     return SINK;
   }
 
