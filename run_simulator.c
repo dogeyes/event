@@ -32,9 +32,12 @@ int main() {
   // calculate all the statics
   while(!is_empty_queue(a_sim->state_queues[SINK])) {
     part* p = dequeue(a_sim->state_queues[SINK]);
-    printf("%f %f %f %f %f\n", p->finish_time[SOURCE], p->finish_time[STATE1],
-           p->finish_time[STATE2],  p->finish_time[STATE3],
-           p->finish_time[SINK]);
+    printf("%f->%f %f->%f %f->%f %f->%f %f->%f\n",
+           p->schedule_time[SOURCE], p->finish_time[SOURCE],
+           p->schedule_time[STATE1], p->finish_time[STATE1],
+           p->schedule_time[STATE2], p->finish_time[STATE2],
+           p->schedule_time[STATE3], p->finish_time[STATE3],
+           p->schedule_time[SINK], p->finish_time[SINK]);
   }
 
   printf("hello");
