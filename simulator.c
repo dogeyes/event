@@ -8,8 +8,6 @@
 #include "pq.h"
 #include "queue.h"
 
-const int MAX_EVENT_QUEUE = 100000;
-
 typedef struct simulator_type {
   // parts queued in every state
   queue* state_queues[STATE_NUM];
@@ -31,7 +29,7 @@ simulator* create_simulator() {
     a_sim->state_queues[i] = create_queue();
     a_sim->finish_times[i] = 0;
   }
-  a_sim->event_pq = create_pq(MAX_EVENT_QUEUE, event_compare);
+  a_sim->event_pq = create_pq(event_compare);
   a_sim->time = 0;
   return a_sim;
 }
