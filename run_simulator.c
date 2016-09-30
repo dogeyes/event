@@ -2,9 +2,10 @@
 #include <stdio.h>
 #include <math.h>
 #include <time.h>
-#include "simulator.c"
-const double INTERVAL_E = 10.0;
-const double DURATION_E = 20.0;
+#include "simulator.h"
+const double INTERVAL_E = 10.0;		//mean interarrival time (A)
+const double DURATION_E = 10.0;		//mean service time (S)
+int PART_NUM = 500;
 
 double urand() {
   return (double)rand() / RAND_MAX;
@@ -18,28 +19,33 @@ double randexp() {
 
 int main() {
   srand(time(NULL));
-  int part_num = 20;
+  int count=0;
+  double in_sys_time, delay, sum_sys=0, sum_delay=0;
   simulator* a_sim = create_simulator();
-  for (int i = 0; i < part_num; ++i) {
-    next_part(a_sim,
-              INTERVAL_E * randexp(),
-              DURATION_E * randexp());
+  for (int i = 0; i < PART_NUM; ++i) {
+    next_part(a_sim, INTERVAL_E * randexp(),DURATION_E * randexp());
   }
-  while(!is_emtpy_pq(a_sim->event_pq)) {
+  while(!is_empty_pq(a_sim->event_pq)) {
     process_event(a_sim);
   }
 
-  // calculate all the statics
+  printf("Part#\t    Time_in_the_System\t      Queuing Delay\t    Total Serv.Time\n");
+  printf("---------------------------------------------------------------------------------\n");
   while(!is_empty_queue(a_sim->state_queues[SINK])) {
     part* p = dequeue(a_sim->state_queues[SINK]);
-    printf("%f->%f %f->%f %f->%f %f->%f %f->%f\n",
-           p->schedule_time[SOURCE], p->finish_time[SOURCE],
-           p->schedule_time[STATE1], p->finish_time[STATE1],
-           p->schedule_time[STATE2], p->finish_time[STATE2],
-           p->schedule_time[STATE3], p->finish_time[STATE3],
-           p->schedule_time[SINK], p->finish_time[SINK]);
-  }
+    //time in the system for each part
+    in_sys_time = p->schedule_time[SINK] - p->schedule_time[SOURCE];
+    delay = in_sys_time - p->process_duration;
 
-  printf("hello");
-  delete_simulator(a_sim);
+    sum_sys += in_sys_time;
+    sum_delay += delay;
+    printf(" %d  \t\t%f\t\t%f\t\t%f\n", ++count, in_sys_time, delay, p->process_duration);
+
+  }
+    printf("\nAverage time in the system:\t%f\n", (double)sum_sys/PART_NUM);
+    printf("Average queuing delay:\t\t%f\n", (double)sum_delay/PART_NUM);
+
+    delete_simulator(a_sim);
+
 }
+
