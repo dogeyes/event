@@ -47,7 +47,7 @@ ITEM_TYPE pop_item(pq* a_pq) {
   return item;
 }
 
-int is_emtpy_pq(pq* a_pq) {
+int is_empty_pq(pq* a_pq) {
   return a_pq->num == 0;
 }
 

@@ -4,13 +4,13 @@
 #include "part.h"
 // event represents a part finish one state.
 typedef struct event_type {
-  // deadline is the event finish time.
-  double deadline;
+  // endtime is the event finish time.
+  double endtime;
   part *p;
 } event;
 
 int event_compare(event* event1, event* event2) {
-  double a = event1->deadline - event2->deadline;
+  double a = event1->endtime - event2->endtime;
   if (a > 0) {
     return 1;
   }
@@ -20,9 +20,9 @@ int event_compare(event* event1, event* event2) {
   return 0;
 }
 
-event* create_event(double deadline, part* p) {
+event* create_event(double endtime, part* p) {
   event* e = (event*)malloc(sizeof(event));
-  e->deadline = deadline;
+  e->endtime = endtime;
   e->p = p;
   return e;
 }
